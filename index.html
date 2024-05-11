@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlacIAres</title>
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script>
-          AFRAME.registerShader('water-shader', {
-                    schema: {
-                              color: { type: 'color', is: 'uniform' },
-                              timeMsec: { type: 'time', is: 'uniform' }
-                    },
 
-                    vertexShader: `
+<head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>GlacIAres</title>
+          <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+          <script src="https://gftruj.github.io/webzamples/aframe/extras/aframe-extras.min.js"></script>
+          <script>
+                    AFRAME.registerShader('water-shader', {
+                              schema: {
+                                        color: { type: 'color', is: 'uniform' },
+                                        timeMsec: { type: 'time', is: 'uniform' }
+                              },
+
+                              vertexShader: `
                               varying vec2 vUv;
                               
                               void main() {
@@ -21,7 +23,7 @@
                               }
                     `,
 
-                    fragmentShader: `
+                              fragmentShader: `
                               varying vec2 vUv;
                               uniform vec3 color;
                               uniform float timeMsec;
@@ -47,21 +49,62 @@
                                         gl_FragColor = vec4(colour, 1.0);
                               }
                     `
-          });
-</script>
+                    });
+          </script>
 </head>
+
 <body>
-    <a-scene>
-        <a-assets>
-          <a-asset-item id="background" src="./assets/fondo.glb"/>
-          <a-asset-item id="bear" src="./assets/polar_bear.glb" />
-          </a-assets>
-        <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 0 0"> </a-entity>
-        <a-entity gltf-model="#bear" scale=".005 .005 .005" position="0 0 -5" rotation="0 0 0"> </a-entity>
-        <a-entity geometry="primitive: plane; width: 50; height: 50"
-        material="shader:water-shader; color: blue; side: double" position="0 0 -1" rotation="-90 0 0"> </a-entity>
-      </a-scene>
+          <a-scene cursor="rayOrigin: mouse">
+                    <a-assets>
+                              <a-asset-item id="background" src="./assets/fondo.glb" />
+                              <a-asset-item id="bear" src="./assets/polar_bear.glb" />
+                    </a-assets>
+                    <a-camera position="0 .5 0" look-controls wasd-controls="fly:true"></a-camera>
+                    <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 0 0"> </a-entity>
+                    <a-entity gltf-model="#bear" scale=".005 .005 .005" walk position="0 0 -5" rotation="0 0 0">
+                    </a-entity>
+                    <a-entity geometry="primitive: plane; width: 50; height: 50"
+                              material="shader:water-shader; color: blue; side: double" position="0 0 -1"
+                              rotation="-90 0 0"> </a-entity>
+          </a-scene>
+          <script>
+                    AFRAME.registerComponent('walk', {
+                              init: function () {
+                                        this.model = null;
+                                        this.mixer = null;
+                                        var el = this.el;
+
+                                        el.addEventListener('click', function () {
+                                                  var model = el.getObject3D('mesh');
+                                                  if (model) {
+                                                            this.move(model, 4000);
+                                                  } else {
+                                                            el.addEventListener('model-loaded', function (e) {
+                                                                      this.move(e.detail.model, 4000);
+                                                            }.bind(this));
+                                                  }
+                                                  el.setAttribute('animation', 'property: position; to: 0 0 -2; dur: 4000; easing: linear; loop: false');
+                                        }.bind(this)); 
+                              },
+                              move: function (model, duration) {
+                                        this.model = model;
+                                        this.mixer = new THREE.AnimationMixer(model);
+                                        this.model.animations.forEach(animation => {
+                                                  this.mixer.clipAction(animation, model).play();
+                                        });
+                                        setTimeout(() => {
+                                                  this.model.animations.forEach(animation => {
+                                                            this.mixer.clipAction(animation, model).stop();
+                                                  });
+                                        }, duration);
+                              },
+                              tick: function (t, dt) {
+                                        if (this.mixer && !isNaN(dt)) {
+                                                  this.mixer.update(dt / 1000);
+                                        }
+                              }
+                    });
+          </script>
 </body>
+
 </html>
-
-
