@@ -54,14 +54,14 @@
     <a-scene>
         <a-assets>
           <a-asset-item id="background" src="./assets/fondo.glb"/>
+          <a-asset-item id="bear" src="./assets/polar_bear.glb" />
           </a-assets>
         <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 0 0"> </a-entity>
-       
+        <a-entity gltf-model="#bear" scale=".005 .005 .005" position="0 0 -5" rotation="0 0 0"> </a-entity>
         <a-entity geometry="primitive: plane; width: 50; height: 50"
-        material="shader:water-shader; color: blue; side: double" position="0 0 -1" rotation="-90 0 0"> </a-scene>
+        material="shader:water-shader; color: blue; side: double" position="0 0 -1" rotation="-90 0 0"> </a-entity>
       </a-scene>
 </body>
 </html>
-
 
 
