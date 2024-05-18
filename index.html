@@ -29,7 +29,7 @@
                               uniform float timeMsec;
 
                               void main() {
-                                        float time = timeMsec / 10000.0;
+                                        float time = timeMsec / 50000.0;
                                         float c = 1.0;
                                         float inten = 0.005;
 
@@ -59,13 +59,30 @@
                               <a-asset-item id="background" src="./assets/fondo.glb" />
                               <a-asset-item id="bear" src="./assets/polar_bear.glb" />
                     </a-assets>
-                    <a-camera position="0 .5 0" look-controls wasd-controls="fly:true"></a-camera>
-                    <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 0 0"> </a-entity>
+                    <a-camera position="0 .8 0" look-controls wasd-controls="fly:true"></a-camera>
+                    <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 220 0"> </a-entity>
                     <a-entity gltf-model="#bear" scale=".005 .005 .005" walk position="0 0 -5" rotation="0 0 0">
                     </a-entity>
                     <a-entity geometry="primitive: plane; width: 50; height: 50"
                               material="shader:water-shader; color: blue; side: double" position="0 0 -1"
                               rotation="-90 0 0"> </a-entity>
+                    <div id="speach" style="display: none">
+                              <p id="hello">Hola, Te voy a contar una triste historia, La historia de mi vida</p>
+                              <div>
+                                        <label for="rate">Rate</label>
+                                        <input type="range" min="0.5" max="2" value="1.2" step="0.1" id="rate" />
+                                        <div class="rate-value">2</div>
+                                        <div class="clearfix"></div>
+                              </div>
+                              <div>
+                                        <label for="pitch">Pitch</label>
+                                        <input type="range" min="0" max="2" value="1" step="0.1" id="pitch" />
+                                        <div class="pitch-value">2</div>
+                                        <div class="clearfix"></div>
+                              </div>
+                              <select style="display:none"></select>
+                    </div>
+
           </a-scene>
           <script>
                     AFRAME.registerComponent('walk', {
@@ -84,7 +101,7 @@
                                                             }.bind(this));
                                                   }
                                                   el.setAttribute('animation', 'property: position; to: 0 0 -2; dur: 4000; easing: linear; loop: false');
-                                        }.bind(this)); 
+                                        }.bind(this));
                               },
                               move: function (model, duration) {
                                         this.model = model;
@@ -96,6 +113,7 @@
                                                   this.model.animations.forEach(animation => {
                                                             this.mixer.clipAction(animation, model).stop();
                                                   });
+                                                  speech(document.querySelector("#hello"));
                                         }, duration);
                               },
                               tick: function (t, dt) {
@@ -104,6 +122,125 @@
                                         }
                               }
                     });
+          </script>
+          <script>
+                    // Speech
+                    // const inputTxt = document.querySelector(".txt");
+                    // speak(inputTxt);
+                    const synth = window.speechSynthesis;
+                    const inputForm = document.querySelector("form");
+                    const voiceSelect = document.querySelector("select");
+                    const pitch = document.querySelector("#pitch");
+                    const pitchValue = document.querySelector(".pitch-value");
+                    const rate = document.querySelector("#rate");
+                    const rateValue = document.querySelector(".rate-value");
+
+                    let voices = [];
+
+                    function populateVoiceList() {
+                              voices = synth.getVoices().sort(function (a, b) {
+                                        const aname = a.name.toUpperCase();
+                                        const bname = b.name.toUpperCase();
+                                        if (aname < bname) {
+                                                  return -1;
+                                        } else if (aname == bname) {
+                                                  return 0;
+                                        } else {
+                                                  return +1;
+                                        }
+                              });
+                              const selectedIndex =
+                                        voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
+                              voiceSelect.innerHTML = "";
+
+                              // for (let i = 0; i < voices.length; i++) {
+                              //   const option = document.createElement("option");
+                              //   option.textContent = `${voices[i].name} (${voices[i].lang})`;
+
+                              //   if (voices[i].default) {
+                              //     option.textContent += " -- DEFAULT";
+                              //   }
+                              //   option.setAttribute("data-lang", voices[i].lang);
+                              //   option.setAttribute("data-name", voices[i].name);
+                              //   voiceSelect.appendChild(option);
+                              // }
+
+                              const option = document.createElement("option");
+                              option.textContent = `Google español (es-ES)`;
+                              option.setAttribute("data-lang", 'es-ES');
+                              option.setAttribute("data-name", 'Google español');
+                              voiceSelect.appendChild(option);
+
+                              //<option data-lang="es-ES" data-name="Google español">Google español (es-ES)</option>
+                              //Google español (es-ES)
+
+                              voiceSelect.selectedIndex = selectedIndex;
+                    }
+
+                    populateVoiceList();
+
+                    if (speechSynthesis.onvoiceschanged !== undefined) {
+                              speechSynthesis.onvoiceschanged = populateVoiceList;
+                    }
+
+                    function speak(inputTxt) {
+                              if (synth.speaking) {
+                                        console.error("speechSynthesis.speaking");
+                                        return; //Para poner en cola
+                              }
+                              if (inputTxt.textContent !== "") {
+                                        // Divide el texto en oraciones o segmentos.
+                                        const textSegments = inputTxt.textContent.match(/[^\.!\?]+[\.!\?]+/g) || [inputTxt.textContent];
+
+                                        let currentSegment = 0;
+
+                                        const speakNextSegment = () => {
+                                                  if (currentSegment < textSegments.length) {
+                                                            const segmentText = textSegments[currentSegment];
+                                                            const utterThis = new SpeechSynthesisUtterance(segmentText);
+
+                                                            utterThis.onend = function (event) {
+                                                                      console.log("Finished speaking segment.");
+                                                                      currentSegment++;
+                                                                      speakNextSegment(); // Recursivamente habla el siguiente segmento
+                                                            };
+
+                                                            utterThis.onerror = function (event) {
+                                                                      console.error("SpeechSynthesisUtterance.onerror");
+                                                            };
+
+                                                            const selectedOption = voiceSelect.selectedOptions[0].getAttribute("data-name");
+                                                            for (let i = 0; i < voices.length; i++) {
+                                                                      if (voices[i].name === selectedOption) {
+                                                                                utterThis.voice = voices[i];
+                                                                                break;
+                                                                      }
+                                                            }
+                                                            utterThis.pitch = pitch.value;
+                                                            utterThis.rate = rate.value;
+                                                            synth.speak(utterThis);
+                                                  }
+                                        }
+                                        speakNextSegment();
+                              }
+                    } // Inicia hablando el primer segmento
+
+                    function speech(inputTxt) {
+                              speak(inputTxt);
+                              inputTxt.blur();
+                    }
+
+                    pitch.onchange = function () {
+                              pitchValue.textContent = pitch.value;
+                    };
+
+                    rate.onchange = function () {
+                              rateValue.textContent = rate.value;
+                    };
+
+                    voiceSelect.onchange = function () {
+                              speak();
+                    };
           </script>
 </body>
 
