@@ -34,8 +34,8 @@ AFRAME.registerComponent('oceanfixed', {
                     speedVariance: { default: 1 },
 
                     // Material.
-                    color: { default: '#7AD2F7', type: 'color' },
-                    opacity: { default: 0.5 }
+                    color: { default: '#20a1f1', type: 'color' },
+                    opacity: { default: 0.4}
           },
 
           /**
