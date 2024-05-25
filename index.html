@@ -2,246 +2,54 @@
 <html lang="es">
 
 <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>GlacIAres</title>
-          <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-          <script src="https://gftruj.github.io/webzamples/aframe/extras/aframe-extras.min.js"></script>
-          <script>
-                    AFRAME.registerShader('water-shader', {
-                              schema: {
-                                        color: { type: 'color', is: 'uniform' },
-                                        timeMsec: { type: 'time', is: 'uniform' }
-                              },
-
-                              vertexShader: `
-                              varying vec2 vUv;
-                              
-                              void main() {
-                                        vUv = uv;
-                                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                              }
-                    `,
-
-                              fragmentShader: `
-                              varying vec2 vUv;
-                              uniform vec3 color;
-                              uniform float timeMsec;
-
-                              void main() {
-                                        float time = timeMsec / 50000.0;
-                                        float c = 1.0;
-                                        float inten = 0.005;
-
-                                        vec2 p = mod(vUv * 6.28318530718, 6.28318530718) - 250.0;
-                                        vec2 i = vec2(p);
-
-                                        for (int n = 0; n < 5; n++) {
-                                        float t = time * (1.0 - (3.5 / float(n + 1)));
-                                        i = p + vec2(cos(t - i.x) + sin(t + i.y), sin(t - i.y) + cos(t + i.x));
-                                        c += 1.0 / length(vec2(p.x / (sin(i.x + t) / inten), p.y / (cos(i.y + t) / inten)));
-                                        }
-                                        c /= 5.0;
-                                        c = 1.17 - pow(c, 1.4);
-                                        vec3 colour = vec3(pow(abs(c), 8.0));
-                                        colour = clamp(colour + vec3(0.0, 0.35, 0.5), 0.0, 1.0);
-                                        
-                                        gl_FragColor = vec4(colour, 1.0);
-                              }
-                    `
-                    });
-          </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlacIAres</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <!--script src="https://gftruj.github.io/webzamples/aframe/extras/aframe-extras.min.js"></script-->
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
+    <script src="./scripts/shader.js"></script>
 </head>
 
 <body>
-          <a-scene cursor="rayOrigin: mouse">
-                    <a-assets>
-                              <a-asset-item id="background" src="./assets/fondo.glb" />
-                              <a-asset-item id="bear" src="./assets/polar_bear.glb" />
-                    </a-assets>
-                    <a-camera position="0 .8 0" look-controls wasd-controls="fly:true"></a-camera>
-                    <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 220 0"> </a-entity>
-                    <a-entity gltf-model="#bear" scale=".005 .005 .005" walk position="0 0 -5" rotation="0 0 0">
-                    </a-entity>
-                    <a-entity geometry="primitive: plane; width: 50; height: 50"
-                              material="shader:water-shader; color: blue; side: double" position="0 0 -1"
-                              rotation="-90 0 0"> </a-entity>
-                    <div id="speach" style="display: none">
-                              <p id="hello">Hola, Te voy a contar una triste historia, La historia de mi vida</p>
-                              <div>
-                                        <label for="rate">Rate</label>
-                                        <input type="range" min="0.5" max="2" value="1.2" step="0.1" id="rate" />
-                                        <div class="rate-value">2</div>
-                                        <div class="clearfix"></div>
-                              </div>
-                              <div>
-                                        <label for="pitch">Pitch</label>
-                                        <input type="range" min="0" max="2" value="1" step="0.1" id="pitch" />
-                                        <div class="pitch-value">2</div>
-                                        <div class="clearfix"></div>
-                              </div>
-                              <select style="display:none"></select>
-                    </div>
+    <a-scene cursor="rayOrigin: mouse">
+        <a-assets>
+            <a-asset-item id="background" src="./assets/fondo.glb" />
+            <a-asset-item id="bear" src="./assets/polar_bear.glb" />
+        </a-assets>
+        <a-entity position="0 0 2" rotation="0 0 0" id="rig"
+            movement-controls="controls: gamepad,keyboard,nipple; constrainToNavMesh: true"
+            nipple-controls="mode: static; lookJoystickEnabled: false; moveJoystickPosition: right">
+            <a-entity camera position="0 0.8 0" look-controls="pointerLockEnabled: false;">
+            </a-entity>
+        </a-entity>
+        <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 220 0"> </a-entity>
+        <a-entity gltf-model="/assets/navmesh.gltf" position=".85 0 5.5" scale=".35 .01 .9" visible="false"
+            nav-mesh></a-entity>
 
-          </a-scene>
-          <script>
-                    AFRAME.registerComponent('walk', {
-                              init: function () {
-                                        this.model = null;
-                                        this.mixer = null;
-                                        var el = this.el;
+        <a-entity gltf-model="#bear" scale=".005 .005 .005" walk position="0 0 -5" rotation="0 0 0">
+        </a-entity>
+        <a-entity geometry="primitive: plane; width: 50; height: 50"
+            material="shader:water-shader; color: blue; side: double" position="0 0 -1" rotation="-90 0 0"> </a-entity>
+        <div id="speach" style="display: none">
+            <p id="hello">Hola, Te voy a contar una triste historia, La historia de mi vida</p>
+            <div>
+                <label for="rate">Rate</label>
+                <input type="range" min="0.5" max="2" value="1.2" step="0.1" id="rate" />
+                <div class="rate-value">2</div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <label for="pitch">Pitch</label>
+                <input type="range" min="0" max="2" value="1" step="0.1" id="pitch" />
+                <div class="pitch-value">2</div>
+                <div class="clearfix"></div>
+            </div>
+            <select style="display:none"></select>
+        </div>
 
-                                        el.addEventListener('click', function () {
-                                                  var model = el.getObject3D('mesh');
-                                                  if (model) {
-                                                            this.move(model, 4000);
-                                                  } else {
-                                                            el.addEventListener('model-loaded', function (e) {
-                                                                      this.move(e.detail.model, 4000);
-                                                            }.bind(this));
-                                                  }
-                                                  el.setAttribute('animation', 'property: position; to: 0 0 -2; dur: 4000; easing: linear; loop: false');
-                                        }.bind(this));
-                              },
-                              move: function (model, duration) {
-                                        this.model = model;
-                                        this.mixer = new THREE.AnimationMixer(model);
-                                        this.model.animations.forEach(animation => {
-                                                  this.mixer.clipAction(animation, model).play();
-                                        });
-                                        setTimeout(() => {
-                                                  this.model.animations.forEach(animation => {
-                                                            this.mixer.clipAction(animation, model).stop();
-                                                  });
-                                                  speech(document.querySelector("#hello"));
-                                        }, duration);
-                              },
-                              tick: function (t, dt) {
-                                        if (this.mixer && !isNaN(dt)) {
-                                                  this.mixer.update(dt / 1000);
-                                        }
-                              }
-                    });
-          </script>
-          <script>
-                    // Speech
-                    // const inputTxt = document.querySelector(".txt");
-                    // speak(inputTxt);
-                    const synth = window.speechSynthesis;
-                    const inputForm = document.querySelector("form");
-                    const voiceSelect = document.querySelector("select");
-                    const pitch = document.querySelector("#pitch");
-                    const pitchValue = document.querySelector(".pitch-value");
-                    const rate = document.querySelector("#rate");
-                    const rateValue = document.querySelector(".rate-value");
-
-                    let voices = [];
-
-                    function populateVoiceList() {
-                              voices = synth.getVoices().sort(function (a, b) {
-                                        const aname = a.name.toUpperCase();
-                                        const bname = b.name.toUpperCase();
-                                        if (aname < bname) {
-                                                  return -1;
-                                        } else if (aname == bname) {
-                                                  return 0;
-                                        } else {
-                                                  return +1;
-                                        }
-                              });
-                              const selectedIndex =
-                                        voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
-                              voiceSelect.innerHTML = "";
-
-                              // for (let i = 0; i < voices.length; i++) {
-                              //   const option = document.createElement("option");
-                              //   option.textContent = `${voices[i].name} (${voices[i].lang})`;
-
-                              //   if (voices[i].default) {
-                              //     option.textContent += " -- DEFAULT";
-                              //   }
-                              //   option.setAttribute("data-lang", voices[i].lang);
-                              //   option.setAttribute("data-name", voices[i].name);
-                              //   voiceSelect.appendChild(option);
-                              // }
-
-                              const option = document.createElement("option");
-                              option.textContent = `Google español (es-ES)`;
-                              option.setAttribute("data-lang", 'es-ES');
-                              option.setAttribute("data-name", 'Google español');
-                              voiceSelect.appendChild(option);
-
-                              //<option data-lang="es-ES" data-name="Google español">Google español (es-ES)</option>
-                              //Google español (es-ES)
-
-                              voiceSelect.selectedIndex = selectedIndex;
-                    }
-
-                    populateVoiceList();
-
-                    if (speechSynthesis.onvoiceschanged !== undefined) {
-                              speechSynthesis.onvoiceschanged = populateVoiceList;
-                    }
-
-                    function speak(inputTxt) {
-                              if (synth.speaking) {
-                                        console.error("speechSynthesis.speaking");
-                                        return; //Para poner en cola
-                              }
-                              if (inputTxt.textContent !== "") {
-                                        // Divide el texto en oraciones o segmentos.
-                                        const textSegments = inputTxt.textContent.match(/[^\.!\?]+[\.!\?]+/g) || [inputTxt.textContent];
-
-                                        let currentSegment = 0;
-
-                                        const speakNextSegment = () => {
-                                                  if (currentSegment < textSegments.length) {
-                                                            const segmentText = textSegments[currentSegment];
-                                                            const utterThis = new SpeechSynthesisUtterance(segmentText);
-
-                                                            utterThis.onend = function (event) {
-                                                                      console.log("Finished speaking segment.");
-                                                                      currentSegment++;
-                                                                      speakNextSegment(); // Recursivamente habla el siguiente segmento
-                                                            };
-
-                                                            utterThis.onerror = function (event) {
-                                                                      console.error("SpeechSynthesisUtterance.onerror");
-                                                            };
-
-                                                            const selectedOption = voiceSelect.selectedOptions[0].getAttribute("data-name");
-                                                            for (let i = 0; i < voices.length; i++) {
-                                                                      if (voices[i].name === selectedOption) {
-                                                                                utterThis.voice = voices[i];
-                                                                                break;
-                                                                      }
-                                                            }
-                                                            utterThis.pitch = pitch.value;
-                                                            utterThis.rate = rate.value;
-                                                            synth.speak(utterThis);
-                                                  }
-                                        }
-                                        speakNextSegment();
-                              }
-                    } // Inicia hablando el primer segmento
-
-                    function speech(inputTxt) {
-                              speak(inputTxt);
-                              inputTxt.blur();
-                    }
-
-                    pitch.onchange = function () {
-                              pitchValue.textContent = pitch.value;
-                    };
-
-                    rate.onchange = function () {
-                              rateValue.textContent = rate.value;
-                    };
-
-                    voiceSelect.onchange = function () {
-                              speak();
-                    };
-          </script>
+    </a-scene>
+    <script src="./scripts/bear.js"></script>
 </body>
 
 </html>
