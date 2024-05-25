@@ -21,13 +21,17 @@
                               width: 110px !important;
                               height: 110px !important;
                               right: unset !important;
-                              left: 45%;
+                              left: 46%;
                     }
           </style>
 </head>
 
 <body>
           <a-scene cursor="rayOrigin: mouse">
+                              <!-- Light-->
+                              <!--a-light type="ambient" color="#FFF" intensity="0.5"></a-light>
+                              <a-light type="directional" color="#FFF" intensity="0.5" position="0 1 0"></a-light-->
+                              <!--a-light type="point" color="black" intensity="2" position="2 4 -3"></a-light-->
                               <a-assets>
                                         <a-asset-item id="background" src="./assets/fondo.glb" />
                                         <a-asset-item id="bear" src="./assets/polar_bear.glb" />
@@ -39,7 +43,7 @@
                                         </a-entity>
                               </a-entity>
                               <a-entity gltf-model="#background" scale="1 1 1" position="0 0 0" rotation="0 220 0"> </a-entity>
-                              <a-entity gltf-model="/assets/navmesh.gltf" position=".85 0 5.5" scale=".35 .01 .9" visible="false"
+                              <a-entity gltf-model="./assets/navmesh.gltf" position=".85 0 5.5" scale=".35 .01 .9" visible="false"
                                         nav-mesh></a-entity>
 
                               <a-entity gltf-model="#bear" scale=".005 .005 .005" walk position="0 0 -5" rotation="0 0 0">
