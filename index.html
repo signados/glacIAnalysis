@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlacIAres</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <!--script src="https://gftruj.github.io/webzamples/aframe/extras/aframe-extras.min.js"></script-->
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
-    <script src="./scripts/shader.js"></script>
+    <!--script src="./scripts/shader.js"></script-->
+    <script src="./scripts/ocean.js"></script>
 </head>
 
 <body>
@@ -29,8 +29,9 @@
 
         <a-entity gltf-model="#bear" scale=".005 .005 .005" walk position="0 0 -5" rotation="0 0 0">
         </a-entity>
-        <a-entity geometry="primitive: plane; width: 50; height: 50"
-            material="shader:water-shader; color: blue; side: double" position="0 0 -1" rotation="-90 0 0"> </a-entity>
+        <a-ocean width="50"  depth="50" density="20" position="0 0 -1" oceanfixed rotation="-90 0 0"></a-ocean>
+        <!--a-entity geometry="primitive: plane; width: 50; height: 50"
+            material="shader:water-shader; color: blue; side: double" position="0 0 -1" rotation="-90 0 0"> </a-entity-->
         <div id="speach" style="display: none">
             <p id="hello">Hola, Te voy a contar una triste historia, La historia de mi vida</p>
             <div>

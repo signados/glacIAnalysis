@@ -1,7 +1,8 @@
 AFRAME.registerShader('water-shader', {
     schema: {
         color: { type: 'color', is: 'uniform' },
-        timeMsec: { type: 'time', is: 'uniform' }
+        timeMsec: { type: 'time', is: 'uniform' },
+        alpha: { type: 'number', is: 'uniform', default: 0.2 }
     },
 
     vertexShader: `
