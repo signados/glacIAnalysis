@@ -17,7 +17,7 @@
                               margin: 0;
                               padding: 0;
                     }
-                    .a-enter-vr {
+                    .a-enter-vr, .a-enter-ar {
                               display: none
                     }
                     #joystickLeftZone {
@@ -124,6 +124,29 @@
                               <a-entity text="value:CO2 concentration; color: white" position="0.4 1.5 0" scale="3 3 3"></a-entity>
                               <a-entity  
                                         babia-queryjson="url: ./staticdata/CO2concentracion.json"
+                                        babia-bars='
+                                                  legend_scale: 5; 
+                                                  height: value; 
+                                                  chartHeight: 45; 
+                                                  animation: true; 
+                                                  palette: blues;
+                                                  axis_name: true; 
+                                                  legend:true; 
+                                                  x_axis: key_as_string; 
+                                                  z_axis: key_as_string;
+                                                  legend_lookat: [laser-controls];
+                                                  animation: true; 
+                                                  '
+                                        position="-1 0 0.2" 
+                                        rotation="0 -0.2 0"
+                                        scale="0.025 0.025 0.025">
+                              </a-entity>
+                    </a-entity>
+
+                    <a-entity id="desastres" visible="false" scale="2 2 2">
+                              <a-entity text="value:Desastres; color: white" position="0.4 1.5 0" scale="3 3 3"></a-entity>
+                              <a-entity  
+                                        babia-queryjson="url: ./staticdata/desastres.json"
                                         babia-bars='
                                                   legend_scale: 5; 
                                                   height: value; 
