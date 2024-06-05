@@ -16,3 +16,7 @@ h1 {
 iframe {
           border-bottom: 1px solid #fff;
 }
+
+.logo {
+    border: none; /* Asegura que no haya bordes */
+}
