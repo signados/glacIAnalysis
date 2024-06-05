@@ -23,14 +23,14 @@ AFRAME.registerComponent('oceanfixed', {
                     depth: { default: 70, min: 0 },
 
                     // Density of waves.
-                    density: { default: 10 },
+                    density: { default: 8 },
 
                     // Wave amplitude and variance.
-                    amplitude: { default: 0.1 },
+                    amplitude: { default: 0.2 },
                     amplitudeVariance: { default: 0.3 },
 
                     // Wave speed and variance.
-                    speed: { default: 1 },
+                    speed: { default: 0.2 },
                     speedVariance: { default: 1 },
 
                     // Material.
