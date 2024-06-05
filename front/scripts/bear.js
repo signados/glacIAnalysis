@@ -20,7 +20,7 @@ AFRAME.registerComponent("walk", {
                                         }
                                         el.setAttribute(
                                                   "animation",
-                                                  "property: position; to: 0 0 -1; dur: 3000; easing: linear; loop: false"
+                                                  "property: position; to: 0 0 -1; dur: 4000; easing: linear; loop: false"
                                         );
                               }.bind(this)
                     );
