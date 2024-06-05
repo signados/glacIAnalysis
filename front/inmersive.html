@@ -8,8 +8,8 @@
           <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
           <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
           <!--script src="./scripts/shader.js"></script-->
+          <script src="./scripts/bear.js"></script>
           <script src="./scripts/ocean.js"></script>
-            <script src="./scripts/bear.js"></script>
           <script src="./scripts/aframe-babia-components.js"></script>
           <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
           <style>
@@ -45,7 +45,7 @@
                     <a-entity position="0 0 2" rotation="0 0 0" id="rig"
                               movement-controls="controls: gamepad,keyboard,nipple; constrainToNavMesh: true"
                               nipple-controls="mode: static; lookJoystickEnabled: false; moveJoystickPosition: middle">
-                              <a-entity camera position="0 1.5 -1.5" look-controls="pointerLockEnabled: false;">
+                              <a-entity camera position="0 1.5 -1.2" look-controls="pointerLockEnabled: false;">
                               </a-entity>
                     </a-entity>
 
@@ -228,7 +228,6 @@
                     </div>
           </a-scene>
           </div>
-          <script src="./scripts/bear.js"></script>
 </body>
 
 </html>
