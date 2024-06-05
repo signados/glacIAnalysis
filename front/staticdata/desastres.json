@@ -1,0 +1,40 @@
+﻿[
+          {
+              "key_as_string": "2008",
+              "key": 1199145600000,
+              "doc_count": 1,
+              "value": 201
+          },
+          {
+              "key_as_string": "2009",
+              "key": 1230768000000,
+              "doc_count": 1,
+              "value": 234
+          },
+          {
+              "key_as_string": "2010",
+              "key": 1262304000000,
+              "doc_count": 1,
+              "value": 325
+          },
+          {
+              "key_as_string": "2011",
+              "key": 1293840000000,
+              "doc_count": 1,
+              "value": 248
+          },
+          {
+              "key_as_string": "2012",
+              "key": 1325376000000,
+              "doc_count": 1,
+              "value": 188
+          },
+          {
+              "key_as_string": "2013",
+              "key": 1356998400000,
+              "doc_count": 1,
+              "value": 607
+          },
+          {
+              "key_as_str
+      
