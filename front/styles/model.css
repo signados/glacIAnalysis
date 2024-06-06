@@ -1,0 +1,10 @@
+.model_viewer {
+          /* Ancho de tu div */
+          /* Alto de tu div */
+          width: 100%;
+          /* Color de fondo (puedes cambiarlo) */
+          text-align: center;
+          /* Centra el contenido horizontalmente */
+          line-height: 200px;
+          /* Centra el contenido verticalmente */
+}
