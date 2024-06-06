@@ -333,6 +333,7 @@
 
           .range>.range-slider,
           label[dir="rtl"] .range-slider {
-                    width: clamp(300px, 50vw, 800px);
-                    min-width: 200px;
+                    width: clamp(380px, 50vw, 800px);
+                    min-width: 380px;
+                    max-width: 670px;;
           }
