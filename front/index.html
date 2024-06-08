@@ -9,6 +9,7 @@
           <link rel="stylesheet" href="styles/range.css">
           <link rel="stylesheet" href="styles/switch.css">
           <link rel="stylesheet" href="styles/model.css">
+          <link rel="stylesheet" href="styles/chat.css">
           <link rel="icon" type="image/png" href="./assets/glaciar.png">
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
                     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
@@ -20,6 +21,11 @@
 <body>
           <iframe src="inmersive.html" width="100%" height="600px" title="inmersive" frameborder="0"></iframe>
           <div class="deep">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <br />
                     <br />
                     <br />
@@ -48,8 +54,8 @@
                     <br />
                     <div class="range">
                               <div class="range-slider"
-                                        style='--min:2024; --max:2100; --step:5; --value:2024; --text-value:"2024";'>
-                                        <input type="range" min="2024" max="2100" step="5" value="2024"
+                                        style='--min:2025; --max:2050; --step:5; --value:2024; --text-value:"2025";'>
+                                        <input type="range" min="2025" max="2050" step="5" value="2025"
                                                   oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value))">
                                         <output></output>
                                         <div class='range-slider__progress'></div>
@@ -59,16 +65,40 @@
                     <br />
                     <br />
                     <div class="container mt-5">
+                              <div class="col-md-12 mb-12">
+                                        <div>
+                                                  <div class="card-body p-0">
+                                                            <model-viewer id="modelViewerBig" class="model_viewer"
+                                                                      src="./assets/glaciar/obj-glaciar-big.glb"
+                                                                      alt="Sculpture" touch-action="pan-y" ar
+                                                                      auto-rotate shadow-intensity="1"
+                                                                      shadow-softness="1"
+                                                                      min-camera-orbit="auto auto .5m"
+                                                                      max-camera-orbit="auto auto 10m"
+                                                                      min-field-of-view="10deg"
+                                                                      max-field-of-view="75deg">
+                                                            </model-viewer>
+                                                            <script>
+                                                                      document.querySelector('#modelViewerBig').addEventListener('load', () => {
+                                                                                const modelViewer = document.querySelector('#modelViewerBig');
+                                                                                modelViewer.cameraOrbit = '0deg 75deg .5m'; // Establece la posición de la cámara a 0.5 metros del objeto
+                                                                      });
+                                                            </script>
+                                                  </div>
+                                        </div>
+                              </div>
+                              <br />
+                              <br />
                               <div class="row">
-                                        <div class="col-md-4 mb-3 glaciar"  id="g1">
-                                                  <div class="card">
+                                        <div class="col-md-4 mb-3 glaciar" id="g1">
+                                                  <div>
                                                             <div class="card-body p-0">
                                                                       <model-viewer id="modelViewer1"
                                                                                 class="model_viewer"
                                                                                 src="./assets/glaciar/obj-glaciar1.glb"
-                                                                                alt="Sculpture" camera-controls
-                                                                                touch-action="pan-y" ar auto-rotate
-                                                                                shadow-intensity="1" shadow-softness="1"
+                                                                                alt="Sculpture" touch-action="pan-y" ar
+                                                                                auto-rotate shadow-intensity="1"
+                                                                                shadow-softness="1"
                                                                                 min-camera-orbit="auto auto 0.5m"
                                                                                 max-camera-orbit="auto auto 10m"
                                                                                 min-field-of-view="10deg"
@@ -83,318 +113,140 @@
                                                             </div>
                                                   </div>
                                         </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g2">
-                                                  <div class="card custom-height">
+                                        <div class="col-md-4 mb-4 glaciar" id="g2">
+                                                  <div>
                                                             <div class="card-body p-0">
                                                                       <model-viewer id="modelViewer2"
                                                                                 class="model_viewer"
-                                                                                src="./assets/glaciar/obj-glaciar2NO.glb"
-                                                                                alt="Sculpture" camera-controls
-                                                                                touch-action="pan-y" ar auto-rotate
-                                                                                shadow-intensity="1" shadow-softness="1"
+                                                                                src="./assets/glaciar/obj-glaciar2.glb"
+                                                                                alt="Sculpture" touch-action="pan-y" ar
+                                                                                auto-rotate shadow-intensity="1"
+                                                                                shadow-softness="1"
                                                                                 min-camera-orbit="auto auto 0.5m"
                                                                                 max-camera-orbit="auto auto 10m"
                                                                                 min-field-of-view="10deg"
                                                                                 max-field-of-view="75deg">
                                                                       </model-viewer>
-                                                                      <!--script>
-                                                                                //No funciona bien
+                                                                      <script>
                                                                                 document.querySelector('#modelViewer2').addEventListener('load', () => {
-                                                                                          const modelViewer = document.querySelector('#modelViewer1');
-                                                                                          modelViewer.cameraOrbit = '0deg 25deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
+                                                                                          const modelViewer = document.querySelector('#modelViewer2');
+                                                                                          modelViewer.cameraOrbit = '0deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
                                                                                 });
-                                                                      </script-->
+                                                                      </script>
                                                             </div>
                                                   </div>
                                         </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g3">
-                                                  <div class="card">
+                                        <div class="col-md-4 mb-4 glaciar" id="g3">
+                                                  <div>
                                                             <div class="card-body p-0">
                                                                       <model-viewer id="modelViewer3"
                                                                                 class="model_viewer"
-                                                                                src="./assets/glaciar/obj-glaciar3NO.glb"
-                                                                                alt="Sculpture" camera-controls
-                                                                                touch-action="pan-y" ar auto-rotate
-                                                                                shadow-intensity="1" shadow-softness="1"
-                                                                                min-camera-orbit="auto auto 5m"
-                                                                                max-camera-orbit="auto auto 1m">
+                                                                                src="./assets/glaciar/obj-glaciar3.glb"
+                                                                                alt="Sculpture" touch-action="pan-y" ar
+                                                                                auto-rotate shadow-intensity="1"
+                                                                                shadow-softness="1"
+                                                                                min-camera-orbit="auto auto 0.5m"
+                                                                                max-camera-orbit="auto auto 10m"
+                                                                                min-field-of-view="10deg"
+                                                                                max-field-of-view="75deg">
                                                                       </model-viewer>
-                                                                      <!--script>
+                                                                      <script>
                                                                                 document.querySelector('#modelViewer3').addEventListener('load', () => {
                                                                                           const modelViewer = document.querySelector('#modelViewer3');
-                                                                                          modelViewer.cameraOrbit = '0deg 75deg 10m'; // Establece la posición de la cámara a 0.5 metros del objeto
+                                                                                          modelViewer.cameraOrbit = '150deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
                                                                                 });
-                                                                      </script-->
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g4">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer4"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar4NO.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 10m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <!--script>
-                                                                      document.querySelector('#modelViewer4').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer4');
-                                                                                modelViewer.cameraOrbit = '0deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script-->
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g5">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer5"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar5.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 10m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <script>
-                                                                      document.querySelector('#modelViewer5').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer5');
-                                                                                modelViewer.cameraOrbit = '0deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g6">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer6"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar6.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 10m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <script>
-                                                                      document.querySelector('#modelViewer6').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer6');
-                                                                                modelViewer.cameraOrbit = '0deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g7">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer7"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar7.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 10m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <script>
-                                                                      document.querySelector('#modelViewer7').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer7');
-                                                                                modelViewer.cameraOrbit = '150deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g8">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer8"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar8.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 20m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <script>
-                                                                      document.querySelector('#modelViewer8').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer8');
-                                                                                modelViewer.cameraOrbit = '0deg 40deg 20m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g9">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer9"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar9NO.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 10m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <!--script>
-                                                                      document.querySelector('#modelViewer9').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer9');
-                                                                                modelViewer.cameraOrbit = '0deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script-->
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g10">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer10"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar10.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 20m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <script>
-                                                                      document.querySelector('#modelViewer10').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer10');
-                                                                                modelViewer.cameraOrbit = '0deg 75deg 10m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g11">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer11"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar11NO.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 10m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="75deg">
-                                                            </model-viewer>
-                                                            <script>
-                                                                      document.querySelector('#modelViewer11').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer11');
-                                                                                modelViewer.cameraOrbit = '0deg 55deg .1m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <div class="col-md-4 mb-4 glaciar"  id="g12">
-                                                  <div class="card">
-                                                            <div class="card-body p-0">
-                                                                      <model-viewer id="modelViewer12"
-                                                                      class="model_viewer"
-                                                                      src="./assets/glaciar/obj-glaciar12.glb"
-                                                                      alt="Sculpture" camera-controls
-                                                                      touch-action="pan-y" ar auto-rotate
-                                                                      shadow-intensity="1" shadow-softness="1"
-                                                                      min-camera-orbit="auto auto 0.5m"
-                                                                      max-camera-orbit="auto auto 10m"
-                                                                      min-field-of-view="10deg"
-                                                                      max-field-of-view="55deg">
-                                                            </model-viewer>
-                                                            <!--script>
-                                                                      document.querySelector('#modelViewer12').addEventListener('load', () => {
-                                                                                const modelViewer = document.querySelector('#modelViewer12');
-                                                                                modelViewer.cameraOrbit = '0deg 75deg 0.5m'; // Establece la posición de la cámara a 0.5 metros del objeto
-                                                                      });
-                                                            </script-->
+                                                                      </script>
                                                             </div>
                                                   </div>
                                         </div>
                               </div>
                     </div>
-
-
-
                     <br />
                     <br />
                     <br />
                     <br />
-                    <h1>Recursos para mejorar</h1>
                     <br />
                     <br />
-                    <div class="container text-center">
+                    <br />
+                    <br />
+                    <br />
+                    <h2>Recursos para mejorar</h2>
+                    <br />
+                    <br />
+                    <div class="container text-center mt-5">
                               <div class="row align-items-start">
-                                        <div class="col">
+                                        <div class="col-md-4 mb-3">
                                                   <p>One of three columns</p>
                                                   <p>One of three columns</p>
                                                   <p>One of three columns</p>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-md-4 mb-3">
                                                   <p>One of three columns</p>
                                                   <p>One of three columns</p>
                                                   <p>One of three columns</p>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-md-4 mb-3">
                                                   <p>One of three columns</p>
                                                   <p>One of three columns</p>
                                                   <p>One of three columns</p>
                                         </div>
                               </div>
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <br />
-                              <iframe class="logo" width="100%" height="100" title="logo" src="logo.html"></iframe>
-                              <br />
                     </div>
-                    <script src="scripts/range.js"></script>
-
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h2>¿Quieres hacer un cambio? Te ayudo</h2>
+                    <br />
+                    <br />
+                    <div class="container text-center mt-5">
+                              <div class="row align-items-start">
+                                        <div class="col-md-6 mb-3">
+                                                  <img src="./assets/oso-asistente.jpeg" alt="chatbot" id="asistente">
+                                        </div>
+                                        <div class="col-md-6 mb-3" style="text-align: center;">
+                                                  <textarea id="chat-input" rows="3" cols="30" placeholder="Pregunta..."></textarea>
+                                                  <br/>
+                                                  <button id="microphoneButton"
+                                                            class="microphone-button btn btn-primary  btn-sm">🎤</button>
+                                                  <button class="btn btn-primary  btn-sm" id="send-button">Enviar</button>
+                                                  <br /><br />
+                                                  <p id="response"></p>
+                                                  <audio id="audioPlayer" controls style="display:none"></audio>
+                                        </div>
+                              </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <iframe class="logo" width="100%" height="100" title="logo" src="logo.html"></iframe>
+                    <br />
+          </div>
+          <script src="scripts/range.js"></script>
+          <script src="scripts/chat.js"></script>
 </body>
 
 </html>

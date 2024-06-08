@@ -7,4 +7,8 @@
           /* Centra el contenido horizontalmente */
           line-height: 200px;
           /* Centra el contenido verticalmente */
+          background-color: #10496a;
+}
+.glaciar {
+          overflow: hidden;
 }
