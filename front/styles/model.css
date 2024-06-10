@@ -12,3 +12,6 @@
 .glaciar {
           overflow: hidden;
 }
+#modelViewerBig {
+          height: 500px;
+}

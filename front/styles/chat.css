@@ -1,7 +1,9 @@
-#chat-input {
+#chat-input, #response {
           padding: 10px;
           display: flex;
           align-items: center;
+          margin: 0 auto;
+          max-width: 405px;
 }
 
 .microphone-button {
