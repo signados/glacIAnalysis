@@ -29,13 +29,12 @@ function updateModelViewerSrc(year) {
           } else if (year > 2030) {
                     newSrc = './assets/glaciar/2035.glb';
           } else if (year > 2025) {
-                    newSrc = './assets/glaciar/2030.glb';
+                    newSrc = './assets/glaciar/2030min.glb';
           } else {
                     newSrc = './assets/glaciar/2025.glb';
           }
           modelViewerBig.setAttribute('src', newSrc);
 }
-
 
 function isSeguimosIgualSelected() {
           return document.querySelector('#option-1').checked;
@@ -50,9 +49,29 @@ document.querySelectorAll('.range-slider input[type="range"]').forEach(function 
                     // Actualizar la opacidad de los glaciares
 
                     if (isSeguimosIgualSelected()) {
-                              updateOpacity(year);
+                              //updateOpacity(year);
                               updateModelViewerSrc(year);
                     }
+          });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+          const modelViewer = document.getElementById('modelViewerBig');
+
+          modelViewer.addEventListener('pointerdown', function() {
+              document.body.style.overflow = 'hidden'; // Prevent scroll
+          });
+
+          modelViewer.addEventListener('pointerup', function() {
+              document.body.style.overflow = ''; // Allow scroll
+          });
+
+          modelViewer.addEventListener('touchstart', function() {
+              document.body.style.overflow = 'hidden'; // Prevent scroll
+          });
+
+          modelViewer.addEventListener('touchend', function() {
+              document.body.style.overflow = ''; // Allow scroll
           });
 });
 
