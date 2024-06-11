@@ -29,7 +29,9 @@ El proyecto dispone de este 📄[artículo en Medium](https://medium.com/@celiaf
 
 ### 📁Web_Page
 
-✨ https://glacianalysis.webextendida.es ✨
+✨ ![Sitio web](https://glacianalysis.webextendida.es) ✨
+
+![Oso en su hábitat](https://glacianalysis.webextendida.es/assets/oso-circle.png)
 
 Dado que uno de los objetivos de este proyecto es concienciar a la gente sobre el cambio climático, gran parte del desarrollo se centró en el aspecto visual. 
 
