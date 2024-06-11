@@ -21,17 +21,17 @@ function updateModelViewerSrc(year) {
           const modelViewerBig = document.querySelector('#modelViewerBig');
           let newSrc;
           if (year > 2045) {
-                    newSrc = './assets/glaciar/2050.glb';
+                    newSrc = './assets/glaciar/2050-min.glb';
           } else if (year > 2040) {
-                    newSrc = './assets/glaciar/2045.glb';
+                    newSrc = './assets/glaciar/2045-min.glb';
           } else if (year > 2035) {
-                    newSrc = './assets/glaciar/2040.glb';
+                    newSrc = './assets/glaciar/2040-min.glb';
           } else if (year > 2030) {
-                    newSrc = './assets/glaciar/2035.glb';
+                    newSrc = './assets/glaciar/2035-min.glb';
           } else if (year > 2025) {
-                    newSrc = './assets/glaciar/2030min.glb';
+                    newSrc = './assets/glaciar/2030-min.glb';
           } else {
-                    newSrc = './assets/glaciar/2025.glb';
+                    newSrc = './assets/glaciar/2025-min.glb';
           }
           modelViewerBig.setAttribute('src', newSrc);
 }
