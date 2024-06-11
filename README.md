@@ -13,3 +13,13 @@ En este repositorio encontrarás varios archivos
 >📓``EDA_Glaciares_y_Deshielo`` : Notebook de creación del Dataset, análisis y limpieza de datos para entrenar el Modelo
 >
 >📓``Training`` : Notebook de entrenamiento del modelo ( Random forest ) entrenado con el csv resultante de EDA_Glaciers_y_Deshielo.ipypnb
+
+
+Podrás visualizar estos notebook dentro de https://colab.google/
+
+>1️⃣ crea dentro de tu google Drive una carpeta llamada DATASETS
+>
+>2️⃣ Descarga los csv en [este enlace](https://drive.google.com/drive/folders/1H-zzHEehFPrxTKbekCNx1IvSVRFv7xFQ?usp=sharing) 📁 e introducelos dentro de la carpeta DATASETS
+>
+>3️⃣ Descarga los notebooks de este repo y abrelos dentro de colab y ve ejecutando las celdas, empieza por ``EDA_Glaciares_y_Deshielo``
+
