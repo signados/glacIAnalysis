@@ -2,7 +2,7 @@
 
 
 ## ***PROYECTO AI Saturdays : Glaciares y Deshielo***🧊:
-+ **Alumnos**: Celia Millán, Daniel López, Ana Aragón, Laura Castro, Jorge Benitez
++ **Alumnos**: Celia Millán, Laura Castro, Daniel López, Ana Aragón, Jorge Benítez
 + **Mentores**: Alejandro, Miguel B, Jorge G
 
 
@@ -29,3 +29,16 @@ El proyecto dispone de este 📄[artículo en Medium](https://medium.com/@celiaf
 
 ### 📁Web_Page
 
+✨ https://glacianalysis.webextendida.es ✨
+
+Dado que uno de los objetivos de este proyecto es concienciar a la gente sobre el cambio climático, gran parte del desarrollo se centró en el aspecto visual. 
+
+Así, decidimos crear un sitio web con una estructura de front-end y back-end bien definida.
+
+En la carpeta de front-end, presentamos un entorno 3D inmersivo donde un pequeño oso en su hábitat nos explica, mediante gráficos inmersivos y con una IA para convertir inmediatamente texto a una voz natural, los graves problemas que el cambio climático le está causando.
+
+El oso nos invita a hacer scroll para explorar más a fondo una simulación de imagen inmersiva de un glaciar, mostrando cómo va perdiendo densidad a medida que pasan los años y las temperaturas siguen en aumento.
+
+Más adelante, contamos con un agente de chat GPT que adopta la personalidad del oso. Este agente está disponible para responder preguntas sobre cómo podemos actuar para frenar el cambio climático.
+
+Finalmente, ofrecemos una sección dedicada a organizaciones comprometidas con la lucha contra el cambio climático y la protección de la biodiversidad, proporcionando recursos y formas de apoyo.
