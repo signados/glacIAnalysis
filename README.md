@@ -25,5 +25,7 @@ Podrás visualizar estos notebook dentro de https://colab.google/
 >3️⃣ Descarga los notebooks de este repo y abrelos dentro de colab y ve ejecutando las celdas, empieza por ``EDA_Glaciares_y_Deshielo``
 >
 
+El proyecto dispone de este 📄[artículo en Medium](https://medium.com/@celiafullstack/glaciares-y-deshielo-678006df2061) que explica el proceso de trabajo
+
 ### 📁Web_Page
 
