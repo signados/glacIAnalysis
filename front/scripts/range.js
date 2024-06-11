@@ -55,3 +55,5 @@ document.querySelectorAll('.range-slider input[type="range"]').forEach(function 
                     }
           });
 });
+
+

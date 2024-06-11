@@ -38,9 +38,6 @@ function more() {
                     const deep = document.getElementById('deep');
                     deep.style.display = 'inline';
           }, 15000);
-
-
-
 }
 
 function deep() {
@@ -48,7 +45,6 @@ function deep() {
           deep.remove()
           const deepaudio = document.getElementById('deepaudio');
           deepaudio.play();
-
 }
 
 AFRAME.registerComponent("walk", {
@@ -75,3 +71,25 @@ AFRAME.registerComponent("walk", {
                     }
           },
 });
+
+function isMobile() {
+          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+ function loadEntity() {
+          if (!isMobile()) {
+              const asset = document.createElement('a-asset-item');
+              asset.setAttribute('id', 'background');
+              asset.setAttribute('src', './assets/fondo.glb');
+              document.querySelector('a-assets').appendChild(asset);
+
+              const entity = document.createElement('a-entity');
+              entity.setAttribute('gltf-model', '#background');
+              entity.setAttribute('scale', '1 1 1');
+              entity.setAttribute('position', '0 0 0');
+              entity.setAttribute('rotation', '0 220 0');
+              document.querySelector('a-scene').appendChild(entity);
+          }
+}
+
+document.addEventListener('DOMContentLoaded', loadEntity);
