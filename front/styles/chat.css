@@ -4,6 +4,7 @@
           align-items: center;
           margin: 0 auto;
           max-width: 405px;
+          border-radius: 10px;
 }
 
 .microphone-button {
