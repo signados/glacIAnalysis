@@ -10,6 +10,6 @@ Glaciares y Deshielo es una investigación sobre la pérdida de masa de los glac
 
 En este repositorio encontrarás varios archivos
 
->📓``EDA_Glacires_y_Deshielo`` : Notebook de creación del Dataset, análisis y limpieza de datos para entrenar el Modelo
+>📓``EDA_Glaciares_y_Deshielo`` : Notebook de creación del Dataset, análisis y limpieza de datos para entrenar el Modelo
 >
 >📓``Training`` : Notebook de entrenamiento del modelo ( Random forest ) entrenado con el csv resultante de EDA_Glaciers_y_Deshielo.ipypnb
