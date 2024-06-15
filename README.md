@@ -1,7 +1,7 @@
 # GlacIAnalysis
 
 
-## ***PROYECTO AI Saturdays : Glaciares y Deshielo***🧊:
+## PROYECTO AI Saturdays : Glaciares y Deshielo 🧊:
 + **Alumnos**: Celia Millán, Laura Castro, Daniel López, Ana Aragón, Jorge Benítez
 + **Mentores**: Alejandro, Miguel B, Jorge G
 
